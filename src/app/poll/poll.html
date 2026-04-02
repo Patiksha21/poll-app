@@ -1,0 +1,36 @@
+<div class="container my-4">
+
+  <!-- Create new poll form -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Create a New Poll</h5>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Question" [(ngModel)]="newQuestion">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Options (comma separated)" [(ngModel)]="newOptions">
+      </div>
+      <button class="btn btn-primary" (click)="addPoll()">Add Poll</button>
+    </div>
+  </div>
+
+  <!-- Display polls -->
+  <div *ngFor="let poll of polls" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ poll.question }}</h5>
+
+      <div *ngIf="poll.options.length > 0; else noOptions">
+        <div *ngFor="let opt of poll.options; let i = index" class="mb-2">
+          <button class="btn btn-outline-success w-100 text-start" (click)="vote(poll.id!, i)">
+            {{ opt.option }} <span class="badge bg-secondary float-end">{{ opt.voteCount }}</span>
+          </button>
+        </div>
+      </div>
+
+      <ng-template #noOptions>
+        <p class="text-muted">No options available for this poll.</p>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
