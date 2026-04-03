@@ -7,7 +7,7 @@ import { Poll } from './poll.models'; // make sure your Poll interface is correc
   providedIn: 'root',
 })
 export class PollService {
-  private baseUrl = 'http://localhost:8080/api/polls'; // backend base URL
+  private baseUrl = 'https://poll-app-backend-4.onrender.com/api/polls'; // backend base URL
 
   constructor(private http: HttpClient) {}
 
